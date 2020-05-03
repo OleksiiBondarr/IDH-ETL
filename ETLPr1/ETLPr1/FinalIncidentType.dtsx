@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{843AD56F-6AFB-4F47-B667-BB094BF5E069}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{60D99166-5FB0-44A4-BCF9-684B32A7BA10}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -44,6 +44,16 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\aleks\Desktop\Fire Incidents Data.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Диспетчер соединений Excel 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{D3AEA768-3F45-4FF3-B7AC-D14086804527}"
+      DTS:ObjectName="Диспетчер соединений Excel 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\aleks\Desktop\IDH\Fire Incidents Data.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -525,8 +535,8 @@
               <connections>
                 <connection
                   refId="Package\Задача потока данных\Источник &quot;Excel&quot;.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Диспетчер соединений Excel]"
-                  connectionManagerRefId="Package.ConnectionManagers[Диспетчер соединений Excel]"
+                  connectionManagerID="Package.ConnectionManagers[Диспетчер соединений Excel 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Диспетчер соединений Excel 1]"
                   description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                   name="OleDbConnection" />
               </connections>
@@ -3596,7 +3606,7 @@
     design-time-name="Package\Задача потока данных">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="297,42"
           Id="Package\Задача потока данных\Назначение &quot;Неструктурированный файл&quot;"
@@ -3618,69 +3628,11 @@
           Id="Package\Задача потока данных\Сортировка"
           TopLeft="71,143" />
         <EdgeLayout
-          Id="Package\Задача потока данных.Paths[Выход источника &quot;Excel&quot;]"
-          TopLeft="142.75,95">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Задача потока данных.Paths[Вывод ошибок назначения &quot;OLE DB&quot;]"
-          TopLeft="258,448">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="309,-29"
-              Start="0,0"
-              End="301.5,-29">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="150.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="150.5,0"
-                    Point2="154.5,0"
-                    Point3="154.5,-4" />
-                  <mssgle:LineSegment
-                    End="154.5,-25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="154.5,-25"
-                    Point2="154.5,-29"
-                    Point3="158.5,-29" />
-                  <mssgle:LineSegment
-                    End="301.5,-29" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="70.0084700520833,1,168.983059895833,10.9501953125"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Задача потока данных.Paths[Выходные данные преобразования данных]"
           TopLeft="137.5,309">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="24.5,118"
               Start="0,0"
               End="24.5,110.5">
@@ -3714,7 +3666,7 @@
           TopLeft="139.25,185">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,82"
               Start="0,0"
               End="0,74.5">
@@ -3729,6 +3681,64 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Задача потока данных.Paths[Выход источника &quot;Excel&quot;]"
+          TopLeft="142.75,95">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Задача потока данных.Paths[Вывод ошибок назначения &quot;OLE DB&quot;]"
+          TopLeft="258,448">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="309,-29"
+              Start="0,0"
+              End="301.5,-29">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="150.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="150.5,0"
+                    Point2="154.5,0"
+                    Point3="154.5,-4" />
+                  <mssgle:LineSegment
+                    End="154.5,-25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="154.5,-25"
+                    Point2="154.5,-29"
+                    Point3="158.5,-29" />
+                  <mssgle:LineSegment
+                    End="301.5,-29" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="70.0084700520833,1,168.983059895833,10.9501953125"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
