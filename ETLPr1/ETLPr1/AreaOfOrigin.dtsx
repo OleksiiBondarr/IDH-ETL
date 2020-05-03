@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="AreaOfOrigin"
   DTS:PackageType="5"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{37FB14B4-9250-47E0-8CAB-D2471DDC9CF2}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{C1819319-6924-4509-ACAC-1419F5C5BC2D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -33,7 +33,7 @@
       DTS:ObjectName="Диспетчер соединений Excel">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\aleks\Desktop\Fire Incidents Data.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\aleks\Desktop\Fire Incidents Data.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -43,7 +43,7 @@
       DTS:ObjectName="Диспетчер соединений Excel 1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\aleks\Desktop\Fire Incidents Data.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\aleks\Desktop\Fire Incidents Data.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -53,7 +53,17 @@
       DTS:ObjectName="Диспетчер соединений Excel 2">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\aleks\Desktop\Fire Incidents Data.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\aleks\Desktop\Fire Incidents Data.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Диспетчер соединений Excel 3]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{9FA61909-CAF7-493D-BA85-1DAA5E761DA1}"
+      DTS:ObjectName="Диспетчер соединений Excel 3">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\aleks\Desktop\IDH\Fire Incidents Data.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -3108,8 +3118,8 @@
               <connections>
                 <connection
                   refId="Package\coordinates\Источник &quot;Excel&quot;.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Диспетчер соединений Excel 2]"
-                  connectionManagerRefId="Package.ConnectionManagers[Диспетчер соединений Excel 2]"
+                  connectionManagerID="Package.ConnectionManagers[Диспетчер соединений Excel 3]"
+                  connectionManagerRefId="Package.ConnectionManagers[Диспетчер соединений Excel 3]"
                   description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                   name="OleDbConnection" />
               </connections>
@@ -5380,45 +5390,45 @@
     design-time-name="Package\coordinates">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\coordinates\Назначение ADO NET"
+          TopLeft="85,394" />
         <NodeLayout
           Size="207,42"
           Id="Package\coordinates\Преобразование данных"
           TopLeft="80,296" />
         <NodeLayout
-          Size="306,42"
-          Id="Package\coordinates\Назначение &quot;Неструктурированный файл&quot; 1"
-          TopLeft="553,272" />
-        <NodeLayout
-          Size="137,42"
-          Id="Package\coordinates\sort by area"
-          TopLeft="117,193" />
+          Size="165,42"
+          Id="Package\coordinates\Источник &quot;Excel&quot;"
+          TopLeft="110.5,69.5" />
         <NodeLayout
           Size="297,42"
           Id="Package\coordinates\Назначение &quot;Неструктурированный файл&quot;"
           TopLeft="570,365" />
         <NodeLayout
-          Size="165,42"
-          Id="Package\coordinates\Источник &quot;Excel&quot;"
-          TopLeft="110.5,69.5" />
+          Size="137,42"
+          Id="Package\coordinates\sort by area"
+          TopLeft="117,193" />
         <NodeLayout
-          Size="193,42"
-          Id="Package\coordinates\Назначение ADO NET"
-          TopLeft="85,394" />
+          Size="306,42"
+          Id="Package\coordinates\Назначение &quot;Неструктурированный файл&quot; 1"
+          TopLeft="553,272" />
         <EdgeLayout
-          Id="Package\coordinates.Paths[Выход сортировки]"
-          TopLeft="184.5,235">
+          Id="Package\coordinates.Paths[Выходные данные преобразования данных]"
+          TopLeft="182.5,338">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,61"
+              StartConnector="{x:Null}"
+              EndConnector="0,56"
               Start="0,0"
-              End="0,53.5">
+              End="0,48.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.5" />
+                    End="0,48.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5432,7 +5442,7 @@
           TopLeft="287,317">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="266,-24"
               Start="0,0"
               End="258.5,-24">
@@ -5464,11 +5474,55 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\coordinates.Paths[Выход сортировки]"
+          TopLeft="184.5,235">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\coordinates.Paths[Выход источника &quot;Excel&quot;]"
+          TopLeft="189.25,111.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,81.5"
+              Start="0,0"
+              End="0,74">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\coordinates.Paths[Вывод ошибок назначения ADO NET]"
           TopLeft="278,415">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="292,-29"
               Start="0,0"
               End="284.5,-29">
@@ -5499,52 +5553,21 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\coordinates.Paths[Выход источника &quot;Excel&quot;]"
-          TopLeft="189.25,111.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,81.5"
-              Start="0,0"
-              End="0,74">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,74" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\coordinates.Paths[Выходные данные преобразования данных]"
-          TopLeft="182.5,338">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,56"
-              Start="0,0"
-              End="0,48.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,48.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\coordinates\Источник &quot;Excel&quot;">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

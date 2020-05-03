@@ -2,43 +2,43 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>ETLPr1</Name>
-    <LastWriteTime>2020-05-03T18:41:55.7920778Z</LastWriteTime>
+    <LastWriteTime>2020-05-03T19:18:12.5683129Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>AreaOfOrigin.dtsx</Name>
-      <LastWriteTime>2020-05-03T16:51:07.0590164Z</LastWriteTime>
+      <LastWriteTime>2020-05-03T19:15:56.4291504Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>BuildingStatus.dtsx</Name>
-      <LastWriteTime>2020-05-03T16:51:05.1876186Z</LastWriteTime>
+      <LastWriteTime>2020-05-03T19:17:12.8858791Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Coordinates.dtsx</Name>
-      <LastWriteTime>2020-05-03T16:51:03.0334777Z</LastWriteTime>
+      <LastWriteTime>2020-05-03T19:16:39.2436016Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>ExtentOfFire.dtsx</Name>
-      <LastWriteTime>2020-05-03T16:49:01.2795256Z</LastWriteTime>
+      <LastWriteTime>2020-05-03T19:17:59.966807Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>FinalIncidentType.dtsx</Name>
-      <LastWriteTime>2020-05-03T17:48:32.4196848Z</LastWriteTime>
+      <LastWriteTime>2020-05-03T19:14:37.9600425Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>FireUnderControlTime.dtsx</Name>
-      <LastWriteTime>2020-05-03T18:32:45.9183941Z</LastWriteTime>
+      <LastWriteTime>2020-05-03T18:57:58.5779967Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>IgnitionSource.dtsx</Name>
-      <LastWriteTime>2020-05-03T18:38:27.8676606Z</LastWriteTime>
+      <LastWriteTime>2020-05-03T18:51:39.275359Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
