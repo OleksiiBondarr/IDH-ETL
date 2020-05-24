@@ -1,0 +1,2636 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/24/2020 3:43:58 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-NE17KN2"
+  DTS:CreatorName="DESKTOP-NE17KN2\aleks"
+  DTS:DTSID="{B86E4125-DCE4-4C2C-AB4E-3BFCA5B0C17C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LocaleID="1049"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{DA1FEA3D-38EF-4F8F-9691-A006F55A3EAA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[db-mssql.s21126]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{D7362CC1-7F63-42E9-AA75-A1D8070DE3A6}"
+      DTS:ObjectName="db-mssql.s21126">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=db-mssql;Initial Catalog=s21126;Integrated Security=True;Application Name=SSIS-Package1-{D7362CC1-7F63-42E9-AA75-A1D8070DE3A6}db-mssql.s21126;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[db-mssql.s211261]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{70188BC9-CBD6-40C7-BB97-897311214B67}"
+      DTS:ObjectName="db-mssql.s211261">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=db-mssql;Initial Catalog=s21126;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Диспетчер соединений Excel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{7813D140-2832-48FF-8672-8CF6C48D69D7}"
+      DTS:ObjectName="Диспетчер соединений Excel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\aleks\Desktop\IDH\Fire Incidents Data.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\clear InitialCADEventType"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Задача &quot;Выполнение SQL&quot;"
+      DTS:DTSID="{4376D2AF-CA1E-4035-94B8-00703482F437}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="clear InitialCADEventType"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{70188BC9-CBD6-40C7-BB97-897311214B67}"
+          SQLTask:SqlStatementSource="delete from InitialCADEventType;&#xA;&#xA;DBCC CHECKIDENT (InitialCADEventType, RESEED, 0)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\insert InitialCADEventType"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Задача потока данных"
+      DTS:DTSID="{A8A61062-2EF9-4212-BE22-15A7084D9DF9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="insert InitialCADEventType">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Источник &quot;Excel&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;1"
+              description="Источник &quot;Excel&quot;"
+              name="Источник &quot;Excel&quot;"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">b9c8f083849797ec635e611bc943bd4$</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Переменная, содержащая команду SQL для выполнения."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Сопоставление между параметрами в команде SQL и переменными."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Диспетчер соединений Excel]"
+                  connectionManagerRefId="Package.ConnectionManagers[Диспетчер соединений Excel]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;]"
+                  name="Выход источника &quot;Excel&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[_id]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[_id]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[_id]"
+                      name="_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Area_of_Origin]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Area_of_Origin]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Area_of_Origin]"
+                      name="Area_of_Origin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Building_Status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Building_Status]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Building_Status]"
+                      name="Building_Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Business_Impact]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Business_Impact]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Business_Impact]"
+                      name="Business_Impact"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Civilian_Casualties]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Civilian_Casualties]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Civilian_Casualties]"
+                      name="Civilian_Casualties"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Count_of_Persons_Rescued]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Count_of_Persons_Rescued]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Count_of_Persons_Rescued]"
+                      name="Count_of_Persons_Rescued"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Estimated_Dollar_Loss]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Estimated_Dollar_Loss]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Estimated_Dollar_Loss]"
+                      name="Estimated_Dollar_Loss"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Estimated_Number_Of_Persons_Displaced]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Estimated_Number_Of_Persons_Displaced]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Estimated_Number_Of_Persons_Displaced]"
+                      name="Estimated_Number_Of_Persons_Displaced"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Exposures]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Exposures]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Exposures]"
+                      name="Exposures"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Ext_agent_app_or_defer_time]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Ext_agent_app_or_defer_time]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Ext_agent_app_or_defer_time]"
+                      name="Ext_agent_app_or_defer_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Extent_Of_Fire]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Extent_Of_Fire]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Extent_Of_Fire]"
+                      name="Extent_Of_Fire"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Final_Incident_Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Final_Incident_Type]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Final_Incident_Type]"
+                      name="Final_Incident_Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Impact_on_Evacuation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Fire_Alarm_System_Impact_on_Evacuation]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Impact_on_Evacuation]"
+                      name="Fire_Alarm_System_Impact_on_Evacuation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Operation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Fire_Alarm_System_Operation]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Operation]"
+                      name="Fire_Alarm_System_Operation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Presence]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Fire_Alarm_System_Presence]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Presence]"
+                      name="Fire_Alarm_System_Presence"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Under_Control_Time]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Fire_Under_Control_Time]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Under_Control_Time]"
+                      name="Fire_Under_Control_Time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Ignition_Source]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Ignition_Source]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Ignition_Source]"
+                      name="Ignition_Source"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Incident_Number]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Incident_Number]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Incident_Number]"
+                      name="Incident_Number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Incident_Station_Area]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Incident_Station_Area]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Incident_Station_Area]"
+                      name="Incident_Station_Area"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Incident_Ward]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Incident_Ward]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Incident_Ward]"
+                      name="Incident_Ward"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Initial_CAD_Event_Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Initial_CAD_Event_Type]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Initial_CAD_Event_Type]"
+                      name="Initial_CAD_Event_Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Intersection]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Intersection]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Intersection]"
+                      name="Intersection"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Last_TFS_Unit_Clear_Time]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Last_TFS_Unit_Clear_Time]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Last_TFS_Unit_Clear_Time]"
+                      name="Last_TFS_Unit_Clear_Time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Latitude]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Latitude]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Latitude]"
+                      name="Latitude"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Level_Of_Origin]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Level_Of_Origin]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Level_Of_Origin]"
+                      name="Level_Of_Origin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Longitude]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Longitude]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Longitude]"
+                      name="Longitude"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Material_First_Ignited]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Material_First_Ignited]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Material_First_Ignited]"
+                      name="Material_First_Ignited"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Method_Of_Fire_Control]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Method_Of_Fire_Control]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Method_Of_Fire_Control]"
+                      name="Method_Of_Fire_Control"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Number_of_responding_apparatus]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Number_of_responding_apparatus]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Number_of_responding_apparatus]"
+                      name="Number_of_responding_apparatus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Number_of_responding_personnel]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Number_of_responding_personnel]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Number_of_responding_personnel]"
+                      name="Number_of_responding_personnel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Possible_Cause]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Possible_Cause]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Possible_Cause]"
+                      name="Possible_Cause"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Property_Use]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Property_Use]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Property_Use]"
+                      name="Property_Use"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Smoke_Alarm_at_Fire_Origin]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin]"
+                      name="Smoke_Alarm_at_Fire_Origin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Failure]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Smoke_Alarm_at_Fire_Origin_Alarm_Failure]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Failure]"
+                      name="Smoke_Alarm_at_Fire_Origin_Alarm_Failure"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Smoke_Alarm_at_Fire_Origin_Alarm_Type]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Type]"
+                      name="Smoke_Alarm_at_Fire_Origin_Alarm_Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation]"
+                      name="Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Spread]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Smoke_Spread]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Spread]"
+                      name="Smoke_Spread"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Sprinkler_System_Operation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Sprinkler_System_Operation]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Sprinkler_System_Operation]"
+                      name="Sprinkler_System_Operation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Sprinkler_System_Presence]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Sprinkler_System_Presence]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Sprinkler_System_Presence]"
+                      name="Sprinkler_System_Presence"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Status_of_Fire_On_Arrival]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Status_of_Fire_On_Arrival]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Status_of_Fire_On_Arrival]"
+                      name="Status_of_Fire_On_Arrival"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[TFS_Alarm_Time]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[TFS_Alarm_Time]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[TFS_Alarm_Time]"
+                      name="TFS_Alarm_Time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[TFS_Arrival_Time]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[TFS_Arrival_Time]"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[TFS_Arrival_Time]"
+                      name="TFS_Arrival_Time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[TFS_Firefighter_Casualties]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[TFS_Firefighter_Casualties]"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[TFS_Firefighter_Casualties]"
+                      name="TFS_Firefighter_Casualties"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[_id]"
+                      dataType="r8"
+                      name="_id" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Area_of_Origin]"
+                      dataType="wstr"
+                      length="255"
+                      name="Area_of_Origin" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Building_Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="Building_Status" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Business_Impact]"
+                      dataType="wstr"
+                      length="255"
+                      name="Business_Impact" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Civilian_Casualties]"
+                      dataType="r8"
+                      name="Civilian_Casualties" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Count_of_Persons_Rescued]"
+                      dataType="r8"
+                      name="Count_of_Persons_Rescued" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Estimated_Dollar_Loss]"
+                      dataType="r8"
+                      name="Estimated_Dollar_Loss" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Estimated_Number_Of_Persons_Displaced]"
+                      dataType="r8"
+                      name="Estimated_Number_Of_Persons_Displaced" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Exposures]"
+                      dataType="wstr"
+                      length="255"
+                      name="Exposures" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Ext_agent_app_or_defer_time]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ext_agent_app_or_defer_time" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Extent_Of_Fire]"
+                      dataType="wstr"
+                      length="255"
+                      name="Extent_Of_Fire" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Final_Incident_Type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Final_Incident_Type" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Fire_Alarm_System_Impact_on_Evacuation]"
+                      dataType="wstr"
+                      length="255"
+                      name="Fire_Alarm_System_Impact_on_Evacuation" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Fire_Alarm_System_Operation]"
+                      dataType="wstr"
+                      length="255"
+                      name="Fire_Alarm_System_Operation" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Fire_Alarm_System_Presence]"
+                      dataType="wstr"
+                      length="255"
+                      name="Fire_Alarm_System_Presence" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Fire_Under_Control_Time]"
+                      dataType="wstr"
+                      length="255"
+                      name="Fire_Under_Control_Time" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Ignition_Source]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ignition_Source" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Incident_Number]"
+                      dataType="wstr"
+                      length="255"
+                      name="Incident_Number" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Incident_Station_Area]"
+                      dataType="r8"
+                      name="Incident_Station_Area" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Incident_Ward]"
+                      dataType="r8"
+                      name="Incident_Ward" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Initial_CAD_Event_Type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Initial_CAD_Event_Type" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Intersection]"
+                      dataType="wstr"
+                      length="255"
+                      name="Intersection" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Last_TFS_Unit_Clear_Time]"
+                      dataType="wstr"
+                      length="255"
+                      name="Last_TFS_Unit_Clear_Time" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Latitude]"
+                      dataType="r8"
+                      name="Latitude" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Level_Of_Origin]"
+                      dataType="wstr"
+                      length="255"
+                      name="Level_Of_Origin" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Longitude]"
+                      dataType="r8"
+                      name="Longitude" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Material_First_Ignited]"
+                      dataType="wstr"
+                      length="255"
+                      name="Material_First_Ignited" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Method_Of_Fire_Control]"
+                      dataType="wstr"
+                      length="255"
+                      name="Method_Of_Fire_Control" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Number_of_responding_apparatus]"
+                      dataType="r8"
+                      name="Number_of_responding_apparatus" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Number_of_responding_personnel]"
+                      dataType="r8"
+                      name="Number_of_responding_personnel" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Possible_Cause]"
+                      dataType="wstr"
+                      length="255"
+                      name="Possible_Cause" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Property_Use]"
+                      dataType="wstr"
+                      length="255"
+                      name="Property_Use" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Smoke_Alarm_at_Fire_Origin]"
+                      dataType="wstr"
+                      length="255"
+                      name="Smoke_Alarm_at_Fire_Origin" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Smoke_Alarm_at_Fire_Origin_Alarm_Failure]"
+                      dataType="wstr"
+                      length="255"
+                      name="Smoke_Alarm_at_Fire_Origin_Alarm_Failure" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Smoke_Alarm_at_Fire_Origin_Alarm_Type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Smoke_Alarm_at_Fire_Origin_Alarm_Type" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation]"
+                      dataType="wstr"
+                      length="255"
+                      name="Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Smoke_Spread]"
+                      dataType="wstr"
+                      length="255"
+                      name="Smoke_Spread" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Sprinkler_System_Operation]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sprinkler_System_Operation" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Sprinkler_System_Presence]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sprinkler_System_Presence" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Status_of_Fire_On_Arrival]"
+                      dataType="wstr"
+                      length="255"
+                      name="Status_of_Fire_On_Arrival" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[TFS_Alarm_Time]"
+                      dataType="wstr"
+                      length="255"
+                      name="TFS_Alarm_Time" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[TFS_Arrival_Time]"
+                      dataType="wstr"
+                      length="255"
+                      name="TFS_Arrival_Time" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[TFS_Firefighter_Casualties]"
+                      dataType="r8"
+                      name="TFS_Firefighter_Casualties" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;]"
+                  isErrorOut="true"
+                  name="Вывод ошибок источника &quot;Excel&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[_id]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[_id]"
+                      name="_id" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Area_of_Origin]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Area_of_Origin]"
+                      name="Area_of_Origin" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Building_Status]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Building_Status]"
+                      name="Building_Status" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Business_Impact]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Business_Impact]"
+                      name="Business_Impact" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Civilian_Casualties]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Civilian_Casualties]"
+                      name="Civilian_Casualties" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Count_of_Persons_Rescued]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Count_of_Persons_Rescued]"
+                      name="Count_of_Persons_Rescued" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Estimated_Dollar_Loss]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Estimated_Dollar_Loss]"
+                      name="Estimated_Dollar_Loss" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Estimated_Number_Of_Persons_Displaced]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Estimated_Number_Of_Persons_Displaced]"
+                      name="Estimated_Number_Of_Persons_Displaced" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Exposures]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Exposures]"
+                      name="Exposures" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Ext_agent_app_or_defer_time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Ext_agent_app_or_defer_time]"
+                      name="Ext_agent_app_or_defer_time" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Extent_Of_Fire]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Extent_Of_Fire]"
+                      name="Extent_Of_Fire" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Final_Incident_Type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Final_Incident_Type]"
+                      name="Final_Incident_Type" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Impact_on_Evacuation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Impact_on_Evacuation]"
+                      name="Fire_Alarm_System_Impact_on_Evacuation" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Operation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Operation]"
+                      name="Fire_Alarm_System_Operation" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Presence]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Presence]"
+                      name="Fire_Alarm_System_Presence" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Fire_Under_Control_Time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Fire_Under_Control_Time]"
+                      name="Fire_Under_Control_Time" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Ignition_Source]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Ignition_Source]"
+                      name="Ignition_Source" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Incident_Number]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Incident_Number]"
+                      name="Incident_Number" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Incident_Station_Area]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Incident_Station_Area]"
+                      name="Incident_Station_Area" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Incident_Ward]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Incident_Ward]"
+                      name="Incident_Ward" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Initial_CAD_Event_Type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Initial_CAD_Event_Type]"
+                      name="Initial_CAD_Event_Type" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Intersection]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Intersection]"
+                      name="Intersection" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Last_TFS_Unit_Clear_Time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Last_TFS_Unit_Clear_Time]"
+                      name="Last_TFS_Unit_Clear_Time" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Latitude]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Latitude]"
+                      name="Latitude" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Level_Of_Origin]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Level_Of_Origin]"
+                      name="Level_Of_Origin" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Longitude]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Longitude]"
+                      name="Longitude" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Material_First_Ignited]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Material_First_Ignited]"
+                      name="Material_First_Ignited" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Method_Of_Fire_Control]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Method_Of_Fire_Control]"
+                      name="Method_Of_Fire_Control" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Number_of_responding_apparatus]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Number_of_responding_apparatus]"
+                      name="Number_of_responding_apparatus" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Number_of_responding_personnel]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Number_of_responding_personnel]"
+                      name="Number_of_responding_personnel" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Possible_Cause]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Possible_Cause]"
+                      name="Possible_Cause" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Property_Use]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Property_Use]"
+                      name="Property_Use" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin]"
+                      name="Smoke_Alarm_at_Fire_Origin" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Failure]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Failure]"
+                      name="Smoke_Alarm_at_Fire_Origin_Alarm_Failure" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Type]"
+                      name="Smoke_Alarm_at_Fire_Origin_Alarm_Type" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation]"
+                      name="Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Smoke_Spread]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Smoke_Spread]"
+                      name="Smoke_Spread" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Sprinkler_System_Operation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Sprinkler_System_Operation]"
+                      name="Sprinkler_System_Operation" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Sprinkler_System_Presence]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Sprinkler_System_Presence]"
+                      name="Sprinkler_System_Presence" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Status_of_Fire_On_Arrival]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Status_of_Fire_On_Arrival]"
+                      name="Status_of_Fire_On_Arrival" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[TFS_Alarm_Time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[TFS_Alarm_Time]"
+                      name="TFS_Alarm_Time" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[TFS_Arrival_Time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[TFS_Arrival_Time]"
+                      name="TFS_Arrival_Time" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[TFS_Firefighter_Casualties]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[TFS_Firefighter_Casualties]"
+                      name="TFS_Firefighter_Casualties" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\insert InitialCADEventType\Назначение ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Загружает данные в базы данных, поддерживающие ADO.NET, в которых используются таблицы или представления. Загружает данные в новую или существующую таблицу. Пример: использование поставщика ADO.NET для ODBC, чтобы загрузить данные в назначение ODBC.Корпорация Майкрософт (Microsoft Corporation). Microsoft SQL Server © Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support2"
+              description="Загружает данные в базы данных, поддерживающие ADO.NET, в которых используются таблицы или представления. Загружает данные в новую или существующую таблицу. Пример: использование поставщика ADO.NET для ODBC, чтобы загрузить данные в назначение ODBC."
+              name="Назначение ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Имя таблицы в целевой базе данных."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."InitialCADEventType"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Укажите число строк в пакете. Значение по умолчанию - 0, при котором размер совпадает с внутренним буфером служб SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания для выполнения команды (в секундах). Значение 0 указывает на бесконечное время работы. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, нужно ли использовать интерфейс SqlBulkCopy для повышения производительности операций массовой вставки. Этот интерфейс поддерживается не всеми поставщиками."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\insert InitialCADEventType\Назначение ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[db-mssql.s21126]"
+                  connectionManagerRefId="Package.ConnectionManagers[db-mssql.s21126]"
+                  description="Диспетчер управляемых соединений"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\insert InitialCADEventType\Назначение ADO NET.Inputs[Вход назначения ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Вход назначения ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Назначение ADO NET.Inputs[Вход назначения ADO NET].Columns[Initial_CAD_Event_Type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Initial_CAD_Event_Type"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\insert InitialCADEventType\Назначение ADO NET.Inputs[Вход назначения ADO NET].ExternalColumns[type]"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Initial_CAD_Event_Type]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Назначение ADO NET.Inputs[Вход назначения ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\insert InitialCADEventType\Назначение ADO NET.Inputs[Вход назначения ADO NET].ExternalColumns[type]"
+                      dataType="wstr"
+                      length="255"
+                      name="type" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\insert InitialCADEventType\Назначение ADO NET.Outputs[Вывод ошибок назначения ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок назначения ADO NET"
+                  synchronousInputId="Package\insert InitialCADEventType\Назначение ADO NET.Inputs[Вход назначения ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Назначение ADO NET.Outputs[Вывод ошибок назначения ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\insert InitialCADEventType\Назначение ADO NET.Outputs[Вывод ошибок назначения ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Назначение ADO NET.Outputs[Вывод ошибок назначения ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\insert InitialCADEventType\Назначение ADO NET.Outputs[Вывод ошибок назначения ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\insert InitialCADEventType\Сортировка"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Сортировка;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;1"
+              description="Сортирует входные данные по возрастанию или убыванию, если выполнить сортировку в источнике нельзя. Пример: сортировка данных продаж по полю &quot;customer id&quot; перед записью в неструктурированный файл и передачей в другой отдел. Примечание. Это преобразование не рекомендуется применять к большим потокам данных."
+              name="Сортировка"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, удаляет ли преобразование &quot;Сортировка&quot; строки с повторяющимися значениями сортировки."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает максимальное число потоков, используемых для сортировки."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки]"
+                  name="Вход сортировки">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[_id]"
+                      cachedDataType="r8"
+                      cachedName="_id"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Area_of_Origin]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Area_of_Origin"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Area_of_Origin]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Building_Status]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Building_Status"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Building_Status]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Business_Impact]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Business_Impact"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Business_Impact]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Civilian_Casualties]"
+                      cachedDataType="r8"
+                      cachedName="Civilian_Casualties"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Civilian_Casualties]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Count_of_Persons_Rescued]"
+                      cachedDataType="r8"
+                      cachedName="Count_of_Persons_Rescued"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Count_of_Persons_Rescued]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Estimated_Dollar_Loss]"
+                      cachedDataType="r8"
+                      cachedName="Estimated_Dollar_Loss"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Estimated_Dollar_Loss]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Estimated_Number_Of_Persons_Displaced]"
+                      cachedDataType="r8"
+                      cachedName="Estimated_Number_Of_Persons_Displaced"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Estimated_Number_Of_Persons_Displaced]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Exposures]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Exposures"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Exposures]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Ext_agent_app_or_defer_time]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Ext_agent_app_or_defer_time"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Ext_agent_app_or_defer_time]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Extent_Of_Fire]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Extent_Of_Fire"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Extent_Of_Fire]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Final_Incident_Type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Final_Incident_Type"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Final_Incident_Type]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Fire_Alarm_System_Impact_on_Evacuation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Fire_Alarm_System_Impact_on_Evacuation"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Impact_on_Evacuation]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Fire_Alarm_System_Operation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Fire_Alarm_System_Operation"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Operation]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Fire_Alarm_System_Presence]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Fire_Alarm_System_Presence"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Alarm_System_Presence]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Fire_Under_Control_Time]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Fire_Under_Control_Time"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Fire_Under_Control_Time]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Ignition_Source]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Ignition_Source"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Ignition_Source]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Incident_Number]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Incident_Number"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Incident_Number]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Incident_Station_Area]"
+                      cachedDataType="r8"
+                      cachedName="Incident_Station_Area"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Incident_Station_Area]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Incident_Ward]"
+                      cachedDataType="r8"
+                      cachedName="Incident_Ward"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Incident_Ward]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Initial_CAD_Event_Type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Initial_CAD_Event_Type"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Initial_CAD_Event_Type]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Intersection]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Intersection"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Intersection]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Last_TFS_Unit_Clear_Time]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Last_TFS_Unit_Clear_Time"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Last_TFS_Unit_Clear_Time]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Latitude]"
+                      cachedDataType="r8"
+                      cachedName="Latitude"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Latitude]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Level_Of_Origin]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Level_Of_Origin"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Level_Of_Origin]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Longitude]"
+                      cachedDataType="r8"
+                      cachedName="Longitude"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Longitude]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Material_First_Ignited]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Material_First_Ignited"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Material_First_Ignited]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Method_Of_Fire_Control]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Method_Of_Fire_Control"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Method_Of_Fire_Control]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Number_of_responding_apparatus]"
+                      cachedDataType="r8"
+                      cachedName="Number_of_responding_apparatus"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Number_of_responding_apparatus]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Number_of_responding_personnel]"
+                      cachedDataType="r8"
+                      cachedName="Number_of_responding_personnel"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Number_of_responding_personnel]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Possible_Cause]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Possible_Cause"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Possible_Cause]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Property_Use]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Property_Use"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Property_Use]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Smoke_Alarm_at_Fire_Origin]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Smoke_Alarm_at_Fire_Origin"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Failure]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Smoke_Alarm_at_Fire_Origin_Alarm_Failure"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Failure]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Smoke_Alarm_at_Fire_Origin_Alarm_Type"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Type]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Smoke_Spread]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Smoke_Spread"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Smoke_Spread]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Sprinkler_System_Operation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Sprinkler_System_Operation"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Sprinkler_System_Operation]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Sprinkler_System_Presence]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Sprinkler_System_Presence"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Sprinkler_System_Presence]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[Status_of_Fire_On_Arrival]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Status_of_Fire_On_Arrival"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[Status_of_Fire_On_Arrival]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[TFS_Alarm_Time]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TFS_Alarm_Time"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[TFS_Alarm_Time]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[TFS_Arrival_Time]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TFS_Arrival_Time"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[TFS_Arrival_Time]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки].Columns[TFS_Firefighter_Casualties]"
+                      cachedDataType="r8"
+                      cachedName="TFS_Firefighter_Casualties"
+                      lineageId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;].Columns[TFS_Firefighter_Casualties]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки]"
+                  isSorted="true"
+                  name="Выход сортировки">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[_id]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[_id]"
+                      name="_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Area_of_Origin]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Area_of_Origin]"
+                      name="Area_of_Origin">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Area_of_Origin]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Building_Status]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Building_Status]"
+                      name="Building_Status">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Building_Status]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Business_Impact]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Business_Impact]"
+                      name="Business_Impact">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Business_Impact]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Civilian_Casualties]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Civilian_Casualties]"
+                      name="Civilian_Casualties">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Civilian_Casualties]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Count_of_Persons_Rescued]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Count_of_Persons_Rescued]"
+                      name="Count_of_Persons_Rescued">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Count_of_Persons_Rescued]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Estimated_Dollar_Loss]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Estimated_Dollar_Loss]"
+                      name="Estimated_Dollar_Loss">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Estimated_Dollar_Loss]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Estimated_Number_Of_Persons_Displaced]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Estimated_Number_Of_Persons_Displaced]"
+                      name="Estimated_Number_Of_Persons_Displaced">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Estimated_Number_Of_Persons_Displaced]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Exposures]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Exposures]"
+                      name="Exposures">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Exposures]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Ext_agent_app_or_defer_time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Ext_agent_app_or_defer_time]"
+                      name="Ext_agent_app_or_defer_time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Ext_agent_app_or_defer_time]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Extent_Of_Fire]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Extent_Of_Fire]"
+                      name="Extent_Of_Fire">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Extent_Of_Fire]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Final_Incident_Type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Final_Incident_Type]"
+                      name="Final_Incident_Type">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Final_Incident_Type]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Fire_Alarm_System_Impact_on_Evacuation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Fire_Alarm_System_Impact_on_Evacuation]"
+                      name="Fire_Alarm_System_Impact_on_Evacuation">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Fire_Alarm_System_Impact_on_Evacuation]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Fire_Alarm_System_Operation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Fire_Alarm_System_Operation]"
+                      name="Fire_Alarm_System_Operation">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Fire_Alarm_System_Operation]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Fire_Alarm_System_Presence]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Fire_Alarm_System_Presence]"
+                      name="Fire_Alarm_System_Presence">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Fire_Alarm_System_Presence]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Fire_Under_Control_Time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Fire_Under_Control_Time]"
+                      name="Fire_Under_Control_Time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Fire_Under_Control_Time]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Ignition_Source]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Ignition_Source]"
+                      name="Ignition_Source">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Ignition_Source]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Incident_Number]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Incident_Number]"
+                      name="Incident_Number">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Incident_Number]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Incident_Station_Area]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Incident_Station_Area]"
+                      name="Incident_Station_Area">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Incident_Station_Area]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Incident_Ward]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Incident_Ward]"
+                      name="Incident_Ward">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Incident_Ward]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Initial_CAD_Event_Type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Initial_CAD_Event_Type]"
+                      name="Initial_CAD_Event_Type"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Initial_CAD_Event_Type]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Intersection]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Intersection]"
+                      name="Intersection">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Intersection]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Last_TFS_Unit_Clear_Time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Last_TFS_Unit_Clear_Time]"
+                      name="Last_TFS_Unit_Clear_Time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Last_TFS_Unit_Clear_Time]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Latitude]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Latitude]"
+                      name="Latitude">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Latitude]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Level_Of_Origin]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Level_Of_Origin]"
+                      name="Level_Of_Origin">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Level_Of_Origin]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Longitude]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Longitude]"
+                      name="Longitude">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Longitude]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Material_First_Ignited]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Material_First_Ignited]"
+                      name="Material_First_Ignited">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Material_First_Ignited]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Method_Of_Fire_Control]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Method_Of_Fire_Control]"
+                      name="Method_Of_Fire_Control">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Method_Of_Fire_Control]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Number_of_responding_apparatus]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Number_of_responding_apparatus]"
+                      name="Number_of_responding_apparatus">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Number_of_responding_apparatus]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Number_of_responding_personnel]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Number_of_responding_personnel]"
+                      name="Number_of_responding_personnel">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Number_of_responding_personnel]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Possible_Cause]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Possible_Cause]"
+                      name="Possible_Cause">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Possible_Cause]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Property_Use]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Property_Use]"
+                      name="Property_Use">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Property_Use]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Smoke_Alarm_at_Fire_Origin]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Smoke_Alarm_at_Fire_Origin]"
+                      name="Smoke_Alarm_at_Fire_Origin">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Smoke_Alarm_at_Fire_Origin]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Failure]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Failure]"
+                      name="Smoke_Alarm_at_Fire_Origin_Alarm_Failure">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Failure]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Type]"
+                      name="Smoke_Alarm_at_Fire_Origin_Alarm_Type">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Smoke_Alarm_at_Fire_Origin_Alarm_Type]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation]"
+                      name="Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Smoke_Alarm_Impact_on_Persons_Evacuating_Impact_on_Evacuation]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Smoke_Spread]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Smoke_Spread]"
+                      name="Smoke_Spread">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Smoke_Spread]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Sprinkler_System_Operation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Sprinkler_System_Operation]"
+                      name="Sprinkler_System_Operation">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Sprinkler_System_Operation]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Sprinkler_System_Presence]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Sprinkler_System_Presence]"
+                      name="Sprinkler_System_Presence">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Sprinkler_System_Presence]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Status_of_Fire_On_Arrival]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[Status_of_Fire_On_Arrival]"
+                      name="Status_of_Fire_On_Arrival">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[Status_of_Fire_On_Arrival]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[TFS_Alarm_Time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[TFS_Alarm_Time]"
+                      name="TFS_Alarm_Time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[TFS_Alarm_Time]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[TFS_Arrival_Time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[TFS_Arrival_Time]"
+                      name="TFS_Arrival_Time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[TFS_Arrival_Time]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[TFS_Firefighter_Casualties]"
+                      dataType="r8"
+                      lineageId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки].Columns[TFS_Firefighter_Casualties]"
+                      name="TFS_Firefighter_Casualties">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\insert InitialCADEventType\Источник "Excel".Outputs[Выход источника "Excel"].Columns[TFS_Firefighter_Casualties]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\insert InitialCADEventType.Paths[Выход источника &quot;Excel&quot;]"
+              endId="Package\insert InitialCADEventType\Сортировка.Inputs[Вход сортировки]"
+              name="Выход источника &quot;Excel&quot;"
+              startId="Package\insert InitialCADEventType\Источник &quot;Excel&quot;.Outputs[Выход источника &quot;Excel&quot;]" />
+            <path
+              refId="Package\insert InitialCADEventType.Paths[Выход сортировки]"
+              endId="Package\insert InitialCADEventType\Назначение ADO NET.Inputs[Вход назначения ADO NET]"
+              name="Выход сортировки"
+              startId="Package\insert InitialCADEventType\Сортировка.Outputs[Выход сортировки]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Ограничение]"
+      DTS:CreationName=""
+      DTS:DTSID="{1BED9A42-9BD4-4D75-996C-C3A7DC5CFDCA}"
+      DTS:From="Package\clear InitialCADEventType"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Ограничение"
+      DTS:To="Package\insert InitialCADEventType" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--В данном разделе CDATA содержатся сведения о макете пакета. В данном разделе содержатся сведения о координатах (x,y), ширине и высоте.-->
+<!--В случае возникновения ошибки при редактировании этого раздела вручную его можно удалить. -->
+<!--Пакет можно загрузить обычным образом, но прежние сведения о макете будут утеряны, и конструктор автоматически перераспределит элементы в области конструктора.-->
+<Objects
+  Version="8">
+  <!--Все приведенные ниже узлы будут содержать свойства, не влияющие на поведение среды выполнения.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="211,42"
+          Id="Package\insert InitialCADEventType"
+          TopLeft="85.5,138.5" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\clear InitialCADEventType"
+          TopLeft="82,20" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Ограничение]"
+          TopLeft="188.25,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76.5"
+              Start="0,0"
+              End="0,69">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\insert InitialCADEventType">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\insert InitialCADEventType\Назначение ADO NET"
+          TopLeft="118,256" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\insert InitialCADEventType\Источник &quot;Excel&quot;"
+          TopLeft="133,63" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\insert InitialCADEventType\Сортировка"
+          TopLeft="143,148" />
+        <EdgeLayout
+          Id="Package\insert InitialCADEventType.Paths[Выход сортировки]"
+          TopLeft="213.75,190">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\insert InitialCADEventType.Paths[Выход источника &quot;Excel&quot;]"
+          TopLeft="214.25,105">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\insert InitialCADEventType\Назначение ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\insert InitialCADEventType\Источник &quot;Excel&quot;">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

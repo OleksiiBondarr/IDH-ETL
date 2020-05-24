@@ -2,43 +2,63 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>ETLPr1</Name>
-    <LastWriteTime>2020-05-03T19:18:12.5683129Z</LastWriteTime>
+    <LastWriteTime>2020-05-24T19:50:32.9341165Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>AreaOfOrigin.dtsx</Name>
-      <LastWriteTime>2020-05-03T19:15:56.4291504Z</LastWriteTime>
+      <LastWriteTime>2020-05-24T19:22:49.6851147Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>BuildingStatus.dtsx</Name>
-      <LastWriteTime>2020-05-03T19:17:12.8858791Z</LastWriteTime>
-      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
-    </ProjectBuildItemInfo>
-    <ProjectBuildItemInfo>
-      <Name>Coordinates.dtsx</Name>
-      <LastWriteTime>2020-05-03T19:16:39.2436016Z</LastWriteTime>
+      <LastWriteTime>2020-05-24T18:40:18.7016278Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>ExtentOfFire.dtsx</Name>
-      <LastWriteTime>2020-05-03T19:17:59.966807Z</LastWriteTime>
+      <LastWriteTime>2020-05-24T18:51:30.5312118Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>FinalIncidentType.dtsx</Name>
-      <LastWriteTime>2020-05-03T19:14:37.9600425Z</LastWriteTime>
+      <LastWriteTime>2020-05-24T18:41:47.3659376Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>FireUnderControlTime.dtsx</Name>
-      <LastWriteTime>2020-05-03T18:57:58.5779967Z</LastWriteTime>
+      <LastWriteTime>2020-05-24T18:41:46.3955368Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>IgnitionSource.dtsx</Name>
-      <LastWriteTime>2020-05-03T18:51:39.275359Z</LastWriteTime>
+      <LastWriteTime>2020-05-24T19:38:43.3243884Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>LocationT.dtsx</Name>
+      <LastWriteTime>2020-05-24T18:42:27.0325348Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>InitialCADEventType.dtsx</Name>
+      <LastWriteTime>2020-05-24T18:42:27.9517335Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>AlarmSystems.dtsx</Name>
+      <LastWriteTime>2020-05-24T19:12:23.1570023Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Incident.dtsx</Name>
+      <LastWriteTime>2020-05-24T19:49:41.7326277Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>LoadAllPackages.dtsx</Name>
+      <LastWriteTime>2020-05-24T19:50:32.8174286Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
